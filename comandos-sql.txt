@@ -1,0 +1,10 @@
+CREATE TABLE aluno(
+	id uuid not null primary key,
+	nome varchar(100) not null,
+	data_nascimento date not null,
+	ano_escola numeric not null,
+	cpf varchar(14) not null
+);
+
+ALTER TABLE aluno ADD COLUMN matricula VARCHAR(100) UNIQUE NOT NULL;
+ALTER TABLE aluno ALTER COLUMN matricula TYPE BIGINT USING matricula::BIGINT;
