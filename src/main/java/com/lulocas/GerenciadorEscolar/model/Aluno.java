@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -34,6 +35,13 @@ public class Aluno {
 
     @Column(name="data_nascimento", nullable=false)
     private LocalDate dataNascimento;
+
+    @ManyToOne
+    @JoinColumn(name="turma_id", nullable=false)
+    private Turma turma;
+
+    @OneToMany(mappedBy="aluno")
+    private List<AlunoProfessor> alunoProfessores;
 
     @Deprecated
     public Aluno(){}

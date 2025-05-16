@@ -26,9 +26,8 @@ public class Turma {
     @Column(name="serie", nullable=false)
     private int serie;
 
-    @ManyToOne
-    @JoinColumn(name="professor_id", nullable=false)
-    private Professor professor;
+    @OneToMany(mappedBy = "turma")
+    private List<TurmaProfessor> turmaProfessores;
 
     @OneToMany(mappedBy="turma")
     private List<Aluno> alunos;

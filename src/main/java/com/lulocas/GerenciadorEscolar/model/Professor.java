@@ -36,10 +36,10 @@ public class Professor {
     @Column(name="formacao", length=150, nullable=false)
     private String formacao;
 
-    @Column(name="experiencia", nullable=true)
-    private int anosExperiencia;
+    @OneToMany(mappedBy = "professor")
+    private List<AlunoProfessor> alunoProfessores;
 
     @OneToMany(mappedBy = "professor")
-    private List<Turma> turmas;
+    private List<TurmaProfessor> turmaProfessores;
 
 }

@@ -8,3 +8,39 @@ CREATE TABLE aluno(
 
 ALTER TABLE aluno ADD COLUMN matricula VARCHAR(100) UNIQUE NOT NULL;
 ALTER TABLE aluno ALTER COLUMN matricula TYPE BIGINT USING matricula::BIGINT;
+
+CREATE TABLE professor (
+    id uuid not null primary key,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    data_nascimento DATE NOT NULL,
+    formacao VARCHAR(150) NOT NULL,
+    experiencia INT NULL
+);
+
+CREATE TABLE turma (
+    id uuid not null primary key,
+    nome_turma VARCHAR(100) NOT NULL,
+    serie INT NOT NULL
+);
+
+ALTER TABLE aluno ADD COLUMN turma_id UUID NOT NULL;
+ALTER TABLE aluno ADD CONSTRAINT fk_turma FOREIGN KEY (turma_id) REFERENCES turma(id);
+
+CREATE TABLE turma_professor (
+    id SERIAL PRIMARY KEY,
+    turma_id UUID NOT NULL,
+    professor_id UUID NOT NULL,
+    materia VARCHAR(100) NOT NULL,
+    CONSTRAINT fk_turma FOREIGN KEY (turma_id) REFERENCES turma(id),
+    CONSTRAINT fk_professor FOREIGN KEY (professor_id) REFERENCES professor(id)
+);
+
+CREATE TABLE aluno_professor (
+    id SERIAL PRIMARY KEY,
+    aluno_id UUID NOT NULL,
+    professor_id UUID NOT NULL,
+    materia VARCHAR(100) NOT NULL,
+    CONSTRAINT fk_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(id),
+    CONSTRAINT fk_professor FOREIGN KEY (professor_id) REFERENCES professor(id)
+);
