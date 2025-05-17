@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/alunos")
+@RequestMapping("/escola/alunos")
 public class AlunoController {
     @Autowired
     private AlunoService alunoService;
