@@ -36,13 +36,9 @@ CREATE TABLE turma_professor (
     CONSTRAINT fk_professor FOREIGN KEY (professor_id) REFERENCES professor(id)
 );
 
-CREATE TABLE aluno_professor (
-    id SERIAL PRIMARY KEY,
-    aluno_id UUID NOT NULL,
-    professor_id UUID NOT NULL,
-    materia VARCHAR(100) NOT NULL,
-    CONSTRAINT fk_aluno FOREIGN KEY (aluno_id) REFERENCES aluno(id),
-    CONSTRAINT fk_professor FOREIGN KEY (professor_id) REFERENCES professor(id)
-);
+CREATE TABLE coordenacao(id uuid not null primary key,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL);
 
 ALTER TABLE professor ADD COLUMN materia VARCHAR(100) NOT NULL;

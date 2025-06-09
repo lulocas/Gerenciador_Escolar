@@ -36,12 +36,13 @@ public class Aluno {
     @Column(name="data_nascimento", nullable=false)
     private LocalDate dataNascimento;
 
+    @Column(name="email", length=100, nullable=false)
+    private String email;
+
     @ManyToOne
     @JoinColumn(name="turma_id", nullable=false)
     private Turma turma;
 
-    @OneToMany(mappedBy="aluno")
-    private List<AlunoProfessor> alunoProfessores;
 
     @Deprecated
     public Aluno(){}
