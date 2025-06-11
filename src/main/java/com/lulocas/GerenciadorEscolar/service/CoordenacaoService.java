@@ -30,6 +30,19 @@ public class CoordenacaoService {
                 .orElseThrow(() -> new RuntimeException("Coordenacao não encontrado"));
         coordenacao.setNome(coordenacaoAtualizado.getNome());
         coordenacao.setCpf(coordenacaoAtualizado.getCpf());
+        coordenacao.setEmail(coordenacaoAtualizado.getEmail());
+        coordenacao.setSenha(coordenacaoAtualizado.getSenha());
+        coordenacao.setTelefone(coordenacaoAtualizado.getTelefone());
+
+        return coordenacaoRepository.save(coordenacao);
+    }
+
+    public Coordenacao atualizarCredenciais(UUID id,  Coordenacao coordenacaoAtualizada) {
+        Coordenacao coordenacao = coordenacaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Coordenação não encontrada"));
+
+        coordenacao.setEmail(coordenacaoAtualizada.getEmail());
+        coordenacao.setSenha(coordenacaoAtualizada.getSenha());
 
         return coordenacaoRepository.save(coordenacao);
     }

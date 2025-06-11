@@ -26,8 +26,8 @@ public class Turma {
     @Column(name="serie", nullable=false)
     private int serie;
 
-    @OneToMany(mappedBy = "turma")
-    private List<TurmaProfessor> turmaProfessores;
+    @OneToOne(mappedBy="turma")
+    private Professor professor;
 
     @OneToMany(mappedBy="turma")
     private List<Aluno> alunos;

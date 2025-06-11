@@ -37,4 +37,11 @@ public class CoordenacaoController {
         Coordenacao coordenacao = coordenacaoService.atualizar(id, coordenacaoAtualizada);
         return ResponseEntity.ok(coordenacao);
     }
+
+    @PutMapping("/{id}/credenciais")
+    public ResponseEntity<Coordenacao> atualizarCredenciais(@PathVariable UUID id,
+                                                            @RequestBody Coordenacao coordenacaoAtualizada) {
+        Coordenacao coordenacao = coordenacaoService.atualizarCredenciais(id,  coordenacaoAtualizada);
+        return ResponseEntity.ok(coordenacaoAtualizada);
+    }
 }

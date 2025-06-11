@@ -52,3 +52,13 @@ ALTER TABLE coordenacao ADD COLUMN telefone VARCHAR(20);
 ALTER TABLE professor ADD COLUMN telefone VARCHAR(20);
 
 ALTER TABLE professor DROP COLUMN materia;
+
+ALTER TABLE turma ADD COLUMN professor_id UUID;
+
+ALTER TABLE turma ADD CONSTRAINT fk_professor
+FOREIGN KEY (professor_id) REFERENCES professor(id);
+
+ALTER TABLE professor ADD COLUMN turma_id UUID;
+
+ALTER TABLE professor ADD CONSTRAINT fk_turma_professor
+FOREIGN KEY (turma_id) REFERENCES turma(id);
