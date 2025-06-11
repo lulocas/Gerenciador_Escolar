@@ -31,7 +31,6 @@ public class ProfessorService {
         professor.setNome(professorAtualizado.getNome());
         professor.setCpf(professorAtualizado.getCpf());
         professor.setFormacao(professorAtualizado.getFormacao());
-        professor.setMateria(professorAtualizado.getMateria());
         professor.setDataNascimento(professorAtualizado.getDataNascimento());
 
         return professorRepository.save(professor);

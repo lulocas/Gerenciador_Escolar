@@ -42,3 +42,13 @@ CREATE TABLE coordenacao(id uuid not null primary key,
     email VARCHAR(100) NOT NULL);
 
 ALTER TABLE professor ADD COLUMN materia VARCHAR(100) NOT NULL;
+
+ALTER TABLE aluno ADD COLUMN senha VARCHAR(20);
+ALTER TABLE coordenacao ADD COLUMN senha VARCHAR(20);
+ALTER TABLE professor ADD COLUMN senha VARCHAR(20);
+
+ALTER TABLE aluno ADD COLUMN telefone VARCHAR(20);
+ALTER TABLE coordenacao ADD COLUMN telefone VARCHAR(20);
+ALTER TABLE professor ADD COLUMN telefone VARCHAR(20);
+
+ALTER TABLE professor DROP COLUMN materia;

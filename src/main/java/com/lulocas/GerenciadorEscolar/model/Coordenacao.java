@@ -24,6 +24,12 @@ public class Coordenacao {
     @Column(name="cpf", length=14, nullable=false)
     private String cpf;
 
-    @Column(name="email", length=100, nullable=false)
+    @Column(name="email", length=100)
     private String email;
+
+    @Column(name="senha", length=20)
+    private String senha;
+
+    @Column(name="telefone", length=20)
+    private String telefone;
 }

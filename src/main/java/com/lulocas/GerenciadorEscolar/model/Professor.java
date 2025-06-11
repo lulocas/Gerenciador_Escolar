@@ -27,9 +27,6 @@ public class Professor {
     @Column(name="cpf", length=14, nullable=false)
     private String cpf;
 
-    @Column(name="materia", length=100, nullable=false)
-    private String materia;
-
     @Column(name="data_nascimento", nullable=false)
     private LocalDate dataNascimento;
 
@@ -38,6 +35,12 @@ public class Professor {
 
     @Column(name="email", length=100, nullable=false)
     private String email;
+
+    @Column(name="senha", length=20)
+    private String senha;
+
+    @Column(name="telefone", length=20)
+    private String telefone;
 
     @OneToMany(mappedBy = "professor")
     private List<TurmaProfessor> turmaProfessores;
