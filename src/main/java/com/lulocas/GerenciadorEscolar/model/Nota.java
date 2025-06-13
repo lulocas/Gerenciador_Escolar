@@ -24,7 +24,7 @@ public class Nota {
 
     @ManyToOne
     @JoinColumn(name = "aluno_id")
-    private UUID aluno;
+    private Aluno aluno;
 
     @Column(name="nota1")
     private BigDecimal nota1;

@@ -1,8 +1,7 @@
 package com.lulocas.GerenciadorEscolar.service;
 
-import com.lulocas.GerenciadorEscolar.model.Aluno;
+
 import com.lulocas.GerenciadorEscolar.model.Turma;
-import com.lulocas.GerenciadorEscolar.repository.AlunoRepository;
 import com.lulocas.GerenciadorEscolar.repository.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +33,10 @@ public class TurmaService {
         turma.setSerie(turmaAtualizado.getSerie());
 
         return turmaRepository.save(turma);
+    }
+
+    public Turma buscarPorId(UUID id) {
+        return turmaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Turma não encontrada com ID: " + id));
     }
 }

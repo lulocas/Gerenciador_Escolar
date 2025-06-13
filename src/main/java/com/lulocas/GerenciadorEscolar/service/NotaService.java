@@ -1,5 +1,6 @@
 package com.lulocas.GerenciadorEscolar.service;
 
+import com.lulocas.GerenciadorEscolar.model.Aluno;
 import com.lulocas.GerenciadorEscolar.model.Nota;
 import com.lulocas.GerenciadorEscolar.repository.NotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,24 @@ import java.util.UUID;
 public class NotaService {
     @Autowired
     private NotaRepository notaRepository;
+    @Autowired
+    private AlunoService alunoService;
 
     public List<Nota> listarNotasPorAluno(UUID alunoId) {
         return notaRepository.findByAlunoId(alunoId);
     }
 
     public Nota salvarNota(Nota nota) {
+        if (nota.getAluno() == null || nota.getAluno().getId() == null) {
+            throw new RuntimeException("Aluno deve ser especificado para salvar a nota.");
+        }
+
+        Aluno aluno = alunoService.buscarPorId(nota.getAluno().getId());
+        if (aluno == null) {
+            throw new RuntimeException("Aluno não encontrado com ID: " + nota.getAluno().getId());
+        }
+
+        nota.setAluno(aluno); // Garante que a nota está vinculada a um aluno existente
         return notaRepository.save(nota);
     }
 
@@ -25,6 +38,17 @@ public class NotaService {
         Nota nota = notaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Nota não encontrada"));
 
+        // Validação do aluno antes de atualizar a nota
+        if (notaAtualizada.getAluno() == null || notaAtualizada.getAluno().getId() == null) {
+            throw new RuntimeException("Aluno deve ser especificado para atualizar a nota.");
+        }
+
+        Aluno aluno = alunoService.buscarPorId(notaAtualizada.getAluno().getId());
+        if (aluno == null) {
+            throw new RuntimeException("Aluno não encontrado com ID: " + notaAtualizada.getAluno().getId());
+        }
+
+        nota.setAluno(aluno);
         if (notaAtualizada.getMateria() != null) {
             nota.setMateria(notaAtualizada.getMateria());
         }
@@ -45,5 +69,10 @@ public class NotaService {
         Nota nota = notaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Nota não encontrada"));
         notaRepository.delete(nota);
+    }
+
+    public Nota buscarPorId(UUID id) {
+        return notaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nota não encontrada com ID: " + id));
     }
 }
