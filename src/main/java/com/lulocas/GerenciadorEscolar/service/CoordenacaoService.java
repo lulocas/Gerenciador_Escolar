@@ -25,17 +25,29 @@ public class CoordenacaoService {
         coordenacaoRepository.deleteById(id);
     }
 
-    public Coordenacao atualizar(UUID id, Coordenacao coordenacaoAtualizado){
+    public Coordenacao atualizar(UUID id, Coordenacao coordenacaoAtualizado) {
         Coordenacao coordenacao = coordenacaoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Coordenacao não encontrado"));
-        coordenacao.setNome(coordenacaoAtualizado.getNome());
-        coordenacao.setCpf(coordenacaoAtualizado.getCpf());
-        coordenacao.setEmail(coordenacaoAtualizado.getEmail());
-        coordenacao.setSenha(coordenacaoAtualizado.getSenha());
-        coordenacao.setTelefone(coordenacaoAtualizado.getTelefone());
+
+        if (coordenacaoAtualizado.getNome() != null) {
+            coordenacao.setNome(coordenacaoAtualizado.getNome());
+        }
+        if (coordenacaoAtualizado.getCpf() != null) {
+            coordenacao.setCpf(coordenacaoAtualizado.getCpf());
+        }
+        if (coordenacaoAtualizado.getEmail() != null) {
+            coordenacao.setEmail(coordenacaoAtualizado.getEmail());
+        }
+        if (coordenacaoAtualizado.getSenha() != null) {
+            coordenacao.setSenha(coordenacaoAtualizado.getSenha());
+        }
+        if (coordenacaoAtualizado.getTelefone() != null) {
+            coordenacao.setTelefone(coordenacaoAtualizado.getTelefone());
+        }
 
         return coordenacaoRepository.save(coordenacao);
     }
+
 
     public Coordenacao atualizarCredenciais(UUID id,  Coordenacao coordenacaoAtualizada) {
         Coordenacao coordenacao = coordenacaoRepository.findById(id)

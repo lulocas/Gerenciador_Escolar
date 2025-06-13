@@ -1,6 +1,7 @@
 package com.lulocas.GerenciadorEscolar.service;
 
 import com.lulocas.GerenciadorEscolar.model.Aluno;
+import com.lulocas.GerenciadorEscolar.model.Coordenacao;
 import com.lulocas.GerenciadorEscolar.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class AlunoService {
     private AlunoRepository alunoRepository;
 
     public Long gerarMatricula() {
-        return System.currentTimeMillis();
+        return System.currentTimeMillis() % 1000000;
     }
 
     public List<Aluno> listarTodos() {
@@ -33,9 +34,35 @@ public class AlunoService {
     public Aluno atualizar(UUID id, Aluno alunoAtualizado) {
         Aluno aluno = alunoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
-        aluno.setNome(alunoAtualizado.getNome());
-        aluno.setDataNascimento(alunoAtualizado.getDataNascimento());
-        aluno.setAno(alunoAtualizado.getAno());
+        if(alunoAtualizado.getNome() != null){
+            aluno.setNome(alunoAtualizado.getNome());
+        }
+        if(alunoAtualizado.getAno() != null){
+            aluno.setAno(alunoAtualizado.getAno());
+        }
+        if(alunoAtualizado.getCpf() != null){
+            aluno.setCpf(alunoAtualizado.getCpf());
+        }
+        if(alunoAtualizado.getEmail() != null){
+            aluno.setEmail(alunoAtualizado.getEmail());
+        }
+        if(alunoAtualizado.getSenha() != null){
+            aluno.setSenha(alunoAtualizado.getSenha());
+        }
+        if(alunoAtualizado.getTelefone() != null){
+            aluno.setTelefone(alunoAtualizado.getTelefone());
+        }
+
+
+        return alunoRepository.save(aluno);
+    }
+
+    public Aluno atualizarCredenciais(UUID id, Aluno alunoAtualizada) {
+        Aluno aluno = alunoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+
+        aluno.setEmail(alunoAtualizada.getEmail());
+        aluno.setSenha(alunoAtualizada.getSenha());
 
         return alunoRepository.save(aluno);
     }

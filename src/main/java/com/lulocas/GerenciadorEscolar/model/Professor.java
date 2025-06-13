@@ -27,9 +27,6 @@ public class Professor {
     @Column(name="cpf", length=14, nullable=false)
     private String cpf;
 
-    @Column(name="data_nascimento", nullable=false)
-    private LocalDate dataNascimento;
-
     @Column(name="formacao", length=150, nullable=false)
     private String formacao;
 

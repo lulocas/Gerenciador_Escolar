@@ -1,6 +1,7 @@
 package com.lulocas.GerenciadorEscolar.controller;
 
 import com.lulocas.GerenciadorEscolar.model.Aluno;
+import com.lulocas.GerenciadorEscolar.model.Coordenacao;
 import com.lulocas.GerenciadorEscolar.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,13 @@ public class AlunoController {
     public ResponseEntity<Aluno> atualizarAluno(@PathVariable UUID id, @RequestBody Aluno alunoAtualizado) {
         Aluno aluno = alunoService.atualizar(id, alunoAtualizado);
         return ResponseEntity.ok(aluno);
+    }
+
+    @PutMapping("/{id}/credenciais")
+    public ResponseEntity<Aluno> atualizarCredenciais(@PathVariable UUID id,
+                                                            @RequestBody Aluno alunoAtualizada) {
+        Aluno aluno = alunoService.atualizarCredenciais(id,  alunoAtualizada);
+        return ResponseEntity.ok(alunoAtualizada);
     }
 
 }

@@ -1,12 +1,11 @@
 package com.lulocas.GerenciadorEscolar.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -31,11 +30,7 @@ public class Aluno {
     private String cpf;
 
     @Column(name="ano_escola", nullable=false)
-    private int ano;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name="data_nascimento")
-    private LocalDate dataNascimento;
+    private Integer ano;
 
     @Column(name="email", length=100)
     private String email;
@@ -46,10 +41,15 @@ public class Aluno {
     @Column(name="telefone", length=20)
     private String telefone;
 
+    @Column(name="num_faltas")
+    private Integer numFaltas;
+
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Nota> notas;
+
     @ManyToOne
     @JoinColumn(name="turma_id")
     private Turma turma;
-
 
     @Deprecated
     public Aluno(){}

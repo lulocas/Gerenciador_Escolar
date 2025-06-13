@@ -1,5 +1,6 @@
 package com.lulocas.GerenciadorEscolar.service;
 
+import com.lulocas.GerenciadorEscolar.model.Coordenacao;
 import com.lulocas.GerenciadorEscolar.model.Professor;
 import com.lulocas.GerenciadorEscolar.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,29 @@ public class ProfessorService {
         professorRepository.deleteById(id);
     }
 
-    public Professor atualizar(UUID id, Professor professorAtualizado){
+    public Professor atualizar(UUID id, Professor professorAtualizado) {
         Professor professor = professorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
-        professor.setNome(professorAtualizado.getNome());
-        professor.setCpf(professorAtualizado.getCpf());
-        professor.setFormacao(professorAtualizado.getFormacao());
-        professor.setDataNascimento(professorAtualizado.getDataNascimento());
+
+        if (professorAtualizado.getNome() != null) {
+            professor.setNome(professorAtualizado.getNome());
+        }
+        if (professorAtualizado.getCpf() != null) {
+            professor.setCpf(professorAtualizado.getCpf());
+        }
+        if (professorAtualizado.getFormacao() != null) {
+            professor.setFormacao(professorAtualizado.getFormacao());
+        }
+
+        return professorRepository.save(professor);
+    }
+
+    public Professor atualizarCredenciais(UUID id, Professor professorAtualizada) {
+        Professor professor = professorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+
+        professor.setEmail(professorAtualizada.getEmail());
+        professor.setSenha(professorAtualizada.getSenha());
 
         return professorRepository.save(professor);
     }

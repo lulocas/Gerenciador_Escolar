@@ -1,5 +1,6 @@
 package com.lulocas.GerenciadorEscolar.controller;
 
+import com.lulocas.GerenciadorEscolar.model.Coordenacao;
 import com.lulocas.GerenciadorEscolar.model.Professor;
 import com.lulocas.GerenciadorEscolar.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,10 @@ public class ProfessorController {
         return ResponseEntity.ok(professor);
     }
 
+    @PutMapping("/{id}/credenciais")
+    public ResponseEntity<Professor> atualizarCredenciais(@PathVariable UUID id,
+                                                            @RequestBody Professor professorAtualizada) {
+        Professor professor = professorService.atualizarCredenciais(id,  professorAtualizada);
+        return ResponseEntity.ok(professorAtualizada);
+    }
 }
