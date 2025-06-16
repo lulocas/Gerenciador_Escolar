@@ -82,3 +82,5 @@ ALTER TABLE aluno ALTER COLUMN turma_id DROP NOT NULL;
 SELECT COLUMN_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'aluno' AND IS_NULLABLE = 'NO';
+
+ALTER TABLE aluno ADD COLUMN turma VARCHAR (20) CHECK(turma='1º ano' OR turma='2º ano' OR turma='3º ano' OR turma='4º ano' OR turma='5º ano');

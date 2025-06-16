@@ -1,6 +1,6 @@
 package com.lulocas.GerenciadorEscolar.service;
 
-import com.lulocas.GerenciadorEscolar.model.Coordenacao;
+import com.lulocas.GerenciadorEscolar.model.Aluno;
 import com.lulocas.GerenciadorEscolar.model.Professor;
 import com.lulocas.GerenciadorEscolar.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,18 @@ public class ProfessorService {
         if (professorAtualizado.getFormacao() != null) {
             professor.setFormacao(professorAtualizado.getFormacao());
         }
+        if(professorAtualizado.getTurma() != null){
+            professor.setTurma(professorAtualizado.getTurma());
+        }
+        if(professorAtualizado.getEmail() != null){
+            professor.setEmail(professorAtualizado.getEmail());
+        }
+        if(professorAtualizado.getSenha() != null){
+            professor.setSenha(professorAtualizado.getSenha());
+        }
+        if(professorAtualizado.getTelefone() != null){
+            professor.setTelefone(professorAtualizado.getTelefone());
+        }
 
         return professorRepository.save(professor);
     }
@@ -51,5 +63,10 @@ public class ProfessorService {
         professor.setSenha(professorAtualizada.getSenha());
 
         return professorRepository.save(professor);
+    }
+
+    public Professor buscarPorId(UUID id) {
+        return professorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado com ID: " + id));
     }
 }

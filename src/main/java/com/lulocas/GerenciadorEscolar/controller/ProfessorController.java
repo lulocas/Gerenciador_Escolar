@@ -1,6 +1,5 @@
 package com.lulocas.GerenciadorEscolar.controller;
 
-import com.lulocas.GerenciadorEscolar.model.Coordenacao;
 import com.lulocas.GerenciadorEscolar.model.Professor;
 import com.lulocas.GerenciadorEscolar.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class ProfessorController {
     }
 
     @PostMapping
-    public ResponseEntity<Professor> adicionarProfessor(@RequestBody Professor professor){
+    public ResponseEntity<Professor> adicionar(@RequestBody Professor professor) {
         Professor novoProfessor = professorService.adicionarProfessor(professor);
         return ResponseEntity.ok(novoProfessor);
     }

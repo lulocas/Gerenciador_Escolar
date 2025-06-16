@@ -39,8 +39,7 @@ public class Professor {
     @Column(name="telefone", length=20)
     private String telefone;
 
-    @OneToOne
-    @JoinColumn(name="turma_id", nullable=false)
-    private Turma turma;
+    @Column(name = "turma")
+    private String turma;
 
 }

@@ -44,12 +44,11 @@ public class Aluno {
     @Column(name="num_faltas")
     private Integer numFaltas;
 
+    @Column(name="turma")
+    private String turma;
+
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Nota> notas;
-
-    @ManyToOne
-    @JoinColumn(name="turma_id")
-    private Turma turma;
 
     @Deprecated
     public Aluno(){}
