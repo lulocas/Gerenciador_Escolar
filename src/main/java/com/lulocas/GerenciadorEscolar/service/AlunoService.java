@@ -54,6 +54,9 @@ public class AlunoService {
         if(alunoAtualizado.getTurma() != null){
             aluno.setTurma(alunoAtualizado.getTurma());
         }
+        if(alunoAtualizado.getNumFaltas() != null){
+            aluno.setNumFaltas(alunoAtualizado.getNumFaltas());
+        }
 
         return alunoRepository.save(aluno);
     }
@@ -73,8 +76,5 @@ public class AlunoService {
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado com ID: " + id));
     }
 
-    public Aluno salvarAluno(Aluno aluno) {
-        return alunoRepository.save(aluno);
-    }
 
 }

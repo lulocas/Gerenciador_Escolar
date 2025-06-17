@@ -44,4 +44,9 @@ public class AlunoController {
         return ResponseEntity.ok(aluno);
     }
 
+    @GetMapping("/{id}")
+    public Aluno buscarPorId(@PathVariable UUID id){
+        return alunoService.buscarPorId(id);
+    }
+
 }
