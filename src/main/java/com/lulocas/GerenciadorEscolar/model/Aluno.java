@@ -47,9 +47,6 @@ public class Aluno {
     @Column(name="turma")
     private String turma;
 
-    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Nota> notas;
-
     @Deprecated
     public Aluno(){}
 }

@@ -22,9 +22,8 @@ public class Nota {
     @Column(name="materia_nome", length=100, nullable=false)
     private String materia;
 
-    @ManyToOne
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
+    @Column(name = "aluno_id", length=100, nullable=false)
+    private String alunoId;
 
     @Column(name="nota1")
     private BigDecimal nota1;
