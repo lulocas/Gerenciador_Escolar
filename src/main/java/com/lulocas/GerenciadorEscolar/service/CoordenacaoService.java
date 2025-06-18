@@ -1,5 +1,6 @@
 package com.lulocas.GerenciadorEscolar.service;
 
+import com.lulocas.GerenciadorEscolar.model.Aluno;
 import com.lulocas.GerenciadorEscolar.model.Coordenacao;
 import com.lulocas.GerenciadorEscolar.repository.CoordenacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class CoordenacaoService {
         if (coordenacaoAtualizado.getTelefone() != null) {
             coordenacao.setTelefone(coordenacaoAtualizado.getTelefone());
         }
+        if (coordenacaoAtualizado.getFormacao() != null) {
+            coordenacao.setFormacao(coordenacaoAtualizado.getFormacao());
+        }
 
         return coordenacaoRepository.save(coordenacao);
     }
@@ -57,5 +61,10 @@ public class CoordenacaoService {
         coordenacao.setSenha(coordenacaoAtualizada.getSenha());
 
         return coordenacaoRepository.save(coordenacao);
+    }
+
+    public Coordenacao buscarPorId(UUID id) {
+        return coordenacaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Coordenacao não encontrado com ID: " + id));
     }
 }

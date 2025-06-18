@@ -69,4 +69,6 @@ public class ProfessorService {
         return professorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado com ID: " + id));
     }
+
+
 }

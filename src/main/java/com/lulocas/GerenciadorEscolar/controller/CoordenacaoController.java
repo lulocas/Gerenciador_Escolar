@@ -1,5 +1,6 @@
 package com.lulocas.GerenciadorEscolar.controller;
 
+import com.lulocas.GerenciadorEscolar.model.Aluno;
 import com.lulocas.GerenciadorEscolar.model.Coordenacao;
 import com.lulocas.GerenciadorEscolar.service.CoordenacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class CoordenacaoController {
                                                             @RequestBody Coordenacao coordenacaoAtualizada) {
         Coordenacao coordenacao = coordenacaoService.atualizarCredenciais(id,  coordenacaoAtualizada);
         return ResponseEntity.ok(coordenacaoAtualizada);
+    }
+
+    @GetMapping("/{id}")
+    public Coordenacao buscarPorId(@PathVariable UUID id) {
+        return coordenacaoService.buscarPorId(id);
     }
 }

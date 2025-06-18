@@ -45,7 +45,7 @@ public class AlunoController {
     }
 
     @GetMapping("/{id}")
-    public Aluno buscarPorId(@PathVariable UUID id){
+    public Aluno buscarPorId(@PathVariable UUID id) {
         return alunoService.buscarPorId(id);
     }
 

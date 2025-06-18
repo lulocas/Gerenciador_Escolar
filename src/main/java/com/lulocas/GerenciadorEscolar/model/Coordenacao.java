@@ -27,6 +27,9 @@ public class Coordenacao {
     @Column(name="email", length=100)
     private String email;
 
+    @Column(name="formacao", length=150)
+    private String formacao;
+
     @Column(name="senha", length=20)
     private String senha;
 
