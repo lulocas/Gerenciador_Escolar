@@ -21,7 +21,8 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
-    public Aluno adicionarAluno(Aluno aluno){
+    public Aluno adicionarAluno(Aluno aluno) {
+        aluno.setMatricula(gerarMatricula());
         return alunoRepository.save(aluno);
     }
 
