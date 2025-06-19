@@ -4,5 +4,5 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/escola
     username: postgres
-    password: luiluisa10
+    password:
     driver-class-name: org.postgresql.Driver
